@@ -2,8 +2,10 @@ package washerman.com.washerman_lite;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText eFullName;
@@ -24,5 +26,16 @@ public class RegisterActivity extends AppCompatActivity {
         eMobileNo = (EditText) findViewById(R.id.mobile);
         bSubmit = (Button) findViewById(R.id.submit);
 
+        clickEvents();
+    }
+
+    private void clickEvents() {
+        //For Login.......
+        bSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(RegisterActivity.this, "Submit Click", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
