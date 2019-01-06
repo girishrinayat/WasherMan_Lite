@@ -11,30 +11,38 @@ import android.widget.Toast;
 
 import com.sharedpreference.SharedPreferenceTest;
 
+/**
+ * @author GIRISH
+ */
 public class MainActivity extends AppCompatActivity {
-
-    //shared prefrence
     private SharedPreferenceTest sharedPreference;
     private Boolean flag;
-    // Creating Progress dialog.
     private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Assigning Activity this to progress dialog.
+        /**
+         *  Assigning Activity this to progress dialog.
+         */
         progressDialog = new ProgressDialog(MainActivity.this);
-        // Creating  new sharedPreference.
+        /**
+         * Creating  new sharedPreference.
+         */
         sharedPreference = new SharedPreferenceTest(MainActivity.this);
-
         flag = sharedPreference.getBool("flag");
 
+        /**
+         * Checking Network State
+         */
        if (!isNetworkAvailable()){
            progressDialog.dismiss();
            Toast.makeText(MainActivity.this, "check internet connection ", Toast.LENGTH_SHORT).show();
        }else{
-           //first time .....
+           /**
+            * first time it user no in logged in state.....
+            */
            if (!flag){
                finish();
                startActivity(new Intent(this,LoginActivity.class));
@@ -42,7 +50,10 @@ public class MainActivity extends AppCompatActivity {
        }
     }
 
-    //runtime network state
+    /**
+     * runtime network state
+     * @return network state
+     */
     private boolean isNetworkAvailable() {
         ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
